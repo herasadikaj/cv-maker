@@ -8,11 +8,16 @@ import Languages from './components/Languages';
 import ExperiencePage from './components/Experience';
 import CvFinal from './components/CvFinal';
 import CvList from './components/CvList';
+
 function App() {
   const [cvData, setCvData] = useState({
     personalData: { name: '', surname: '', email: '', phone: '', linkedin: '', about: '' },
-    education: { startDate: '', endDate: '', uniName: '', fieldOfStudy: '', universityLink: '', educationType: '' },
-    experience: { startDate: '', endDate: '', companyName: '', position: '', description: '' },
+    education: [
+      { startDate: '', endDate: '', uniName: '', fieldOfStudy: '', universityLink: '', educationType: '' }
+    ],
+    experience: [
+      { startDate: '', endDate: '', companyName: '', position: '', description: '' }
+    ],
     skills: [],
     languages: []
   });

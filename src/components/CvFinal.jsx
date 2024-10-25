@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import './pages.css';
 
 function CvFinal() {
   const { id } = useParams(); 
@@ -13,29 +14,29 @@ function CvFinal() {
 
   return (
     <div className="cv-display">
-      <h1>Curriculum Vitae</h1>
+      <h1 className='curiculum'>Curriculum Vitae</h1>
       <h2>Personal Information</h2>
-      <p>Name: {cvData.personalData.name}</p>
-      <p>Surname: {cvData.personalData.surname}</p>
-      <p>Email: {cvData.personalData.email}</p>
-      <p>Phone: {cvData.personalData.phone}</p>
-      <p>LinkedIn: {cvData.personalData.linkedin}</p>
-      <p>About: {cvData.personalData.about}</p>
+      <p><strong>Name:</strong> {cvData.personalData.name}</p>
+      <p><strong>Surname:</strong> {cvData.personalData.surname}</p>
+      <p><strong>Email:</strong> {cvData.personalData.email}</p>
+      <p><strong>Phone:</strong> {cvData.personalData.phone}</p>
+      <p><strong>LinkedIn:</strong> {cvData.personalData.linkedin}</p>
+      <p><strong>About:</strong> {cvData.personalData.about}</p>
 
       <h2>Education</h2>
-      <p>Start Date: {cvData.education.startDate}</p>
-      <p>End Date: {cvData.education.endDate}</p>
-      <p>University Name: {cvData.education.uniName}</p>
-      <p>Field of Study: {cvData.education.fieldOfStudy}</p>
-      <p>University Link: {cvData.education.universityLink}</p>
-      <p>Education Type: {cvData.education.educationType}</p>
+      <p><strong>Start Date:</strong> {cvData.education.startDate}</p>
+      <p><strong>End Date:</strong> {cvData.education.endDate}</p>
+      <p><strong>University Name:</strong> {cvData.education.uniName}</p>
+      <p><strong>Field of Study:</strong> {cvData.education.fieldOfStudy}</p>
+      <p><strong>University Link:</strong> <a href={cvData.education.universityLink} target="_blank" rel="noopener noreferrer">{cvData.education.universityLink}</a></p>
+      <p><strong>Education Type:</strong> {cvData.education.educationType}</p>
 
       <h2>Experience</h2>
-      <p>Start Date: {cvData.experience.startDate}</p>
-      <p>End Date: {cvData.experience.endDate}</p>
-      <p>Company Name: {cvData.experience.companyName}</p>
-      <p>Position: {cvData.experience.position}</p>
-      <p>Description: {cvData.experience.description}</p>
+      <p><strong>Start Date:</strong> {cvData.experience.startDate}</p>
+      <p><strong>End Date:</strong> {cvData.experience.endDate}</p>
+      <p><strong>Company Name:</strong> {cvData.experience.companyName}</p>
+      <p><strong>Position:</strong> {cvData.experience.position}</p>
+      <p><strong>Description:</strong> {cvData.experience.description}</p>
 
       <h2>Skills</h2>
       <ul>
@@ -52,7 +53,7 @@ function CvFinal() {
       </ul>
 
       <div className='butona-fund'>
-        <button onClick={()=>navigate('/languages')}>Prev</button>
+        <button onClick={() => navigate('/languages')} >Prev</button>
         <button onClick={() => navigate('/list')}>Back to CV List</button>
         <button onClick={() => navigate('/')}>Homepage</button>
       </div>

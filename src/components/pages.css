@@ -2,7 +2,6 @@ body, html {
     padding: 0;
     margin: 0; 
     width: 100%; 
-    height: 100%; 
 }
 /*HOMEPAGE*/
 .homepage {
@@ -21,12 +20,21 @@ body, html {
 }
 
 .butona-welcome {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
 }
-
+.create{
+  background-color: rgb(40, 39, 39);
+  width:200px;
+  height: 50px;
+}
+.check{
+  background-color: rgb(40, 39, 39); 
+  width: 200px;
+  height: 50px;
+}
 .create:hover {
     background-color: rgb(65, 64, 64);
     border-color: rgb(65, 64, 64);
@@ -559,4 +567,68 @@ li {
 
 .search-bar{
   width: 100%;
+}
+
+.cv-display {
+  max-width: 100%; /* Set a maximum width for the CV */
+  margin: 20px auto; /* Center the CV horizontally */
+  padding: 20px; /* Add padding around the content */
+  border-radius: 8px; /* Rounded corners */ /* Light background color */
+  font-family: Arial, sans-serif; /* Use a readable font */
+}
+
+h1 {
+  text-align: center; /* Center the title */
+  color: #333; /* Darker color for the title */
+}
+
+h2 {
+  color: #007BFF; /* Blue color for section headings */
+  border-bottom: 2px solid #007BFF; /* Underline for section headings */
+  padding-bottom: 5px; /* Space between heading and content */
+}
+
+p {
+  margin: 5px 0; 
+  color: white;/* Margin between paragraphs */
+}
+
+ul {
+  margin: 5px 0 15px 20px;
+  color: white; /* Adjust margin for lists */
+}
+li{
+  color: white;
+}
+.butona-fund {
+  display: flex; /* Use flexbox for button alignment */
+  justify-content: space-between; /* Space buttons evenly */
+  margin-top: 20px; /* Space above buttons */
+}
+
+button {
+  background-color: #007BFF; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded button corners */
+  padding: 10px 15px; /* Padding inside buttons */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.curiculum{
+  justify-content: center;
+  margin-left: 100px;
+}
+
+.butona-fund{
+  gap:20px;
+}
+
+.buttons{
+  gap:20px;
 }

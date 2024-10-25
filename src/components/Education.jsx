@@ -7,14 +7,16 @@ function EducationPage({ cvData, setCvData }) {
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = (e, index) => {
     const { name, value } = e.target;
+    const updatedEducation = [...cvData.education];
+    updatedEducation[index] = {
+      ...updatedEducation[index],
+      [name]: value,
+    };
     setCvData((prevData) => ({
       ...prevData,
-      education: {
-        ...prevData.education,
-        [name]: value,
-      },
+      education: updatedEducation,
     }));
   };
 
@@ -23,15 +25,27 @@ function EducationPage({ cvData, setCvData }) {
   };
 
   const handleNext = () => {
-    const { startDate, endDate, uniName, fieldOfStudy, universityLink, educationType } = cvData.education;
+    const isValid = cvData.education.every(({ startDate, endDate, uniName, fieldOfStudy, universityLink, educationType }) => 
+      startDate && endDate && uniName && fieldOfStudy && universityLink && educationType
+    );
 
-    if (!startDate || !endDate || !uniName || !fieldOfStudy || !universityLink || !educationType) {
+    if (!isValid) {
       setError('Please fill in all fields');
       return;
     }
 
     setError('');
     navigate('/experience'); 
+  };
+
+  const handleAddEducation = () => {
+    setCvData((prevData) => ({
+      ...prevData,
+      education: [
+        ...prevData.education,
+        { startDate: '', endDate: '', uniName: '', fieldOfStudy: '', universityLink: '', educationType: '' }
+      ],
+    }));
   };
 
   return (
@@ -42,69 +56,74 @@ function EducationPage({ cvData, setCvData }) {
 
       <div className="card-education">
         <h3>Education Details</h3>
-        
-        <div className="row">
-          <label>Start Date:</label>
-          <input
-            type="date"
-            name="startDate"
-            value={cvData.education.startDate || ''}
-            onChange={handleChange}
-          />
+        {cvData.education.map((edu, index) => (
+          <div key={index}>
+            <div className="row">
+              <label>Start Date:</label>
+              <input
+                type="date"
+                name="startDate"
+                value={edu.startDate || ''}
+                onChange={(e) => handleChange(e, index)}
+              />
 
-          <label>End Date:</label>
-          <input
-            type="date"
-            name="endDate"
-            value={cvData.education.endDate || ''}
-            onChange={handleChange}
-          />
-        </div>
+              <label>End Date:</label>
+              <input
+                type="date"
+                name="endDate"
+                value={edu.endDate || ''}
+                onChange={(e) => handleChange(e, index)}
+              />
+            </div>
 
-        <div className="row">
-          <label>Name of University:</label>
-          <input
-            type="text"
-            name="uniName"
-            value={cvData.education.uniName || ''}
-            onChange={handleChange}
-            placeholder="Enter name of University"
-          />
+            <div className="row">
+              <label>Name of University:</label>
+              <input
+                type="text"
+                name="uniName"
+                value={edu.uniName || ''}
+                onChange={(e) => handleChange(e, index)}
+                placeholder="Enter name of University"
+              />
 
-          <label>Field of Study:</label>
-          <input
-            type="text"
-            name="fieldOfStudy"
-            value={cvData.education.fieldOfStudy || ''}
-            onChange={handleChange}
-            placeholder="Enter field of study"
-          />
-        </div>
+              <label>Field of Study:</label>
+              <input
+                type="text"
+                name="fieldOfStudy"
+                value={edu.fieldOfStudy || ''}
+                onChange={(e) => handleChange(e, index)}
+                placeholder="Enter field of study"
+              />
+            </div>
 
-        <div className="row">
-          <label>University Website:</label>
-          <input
-            type="url"
-            name="universityLink"
-            value={cvData.education.universityLink || ''}
-            onChange={handleChange}
-            placeholder="Enter university website link"
-          />
-        </div>
+            <div className="row">
+              <label>University Website:</label>
+              <input
+                type="url"
+                name="universityLink"
+                value={edu.universityLink || ''}
+                onChange={(e) => handleChange(e, index)}
+                placeholder="Enter university website link"
+              />
+            </div>
 
-        <label>Type of Education:</label>
-        <select
-          name="educationType"
-          value={cvData.education.educationType || ''}
-          onChange={handleChange}
-        >
-          <option value="">Select type</option>
-          <option value="Bachelor">Bachelor</option>
-          <option value="Master">Master</option>
-          <option value="PhD">PhD</option>
-        </select>
-        
+            <label>Type of Education:</label>
+            <select
+              name="educationType"
+              value={edu.educationType || ''}
+              onChange={(e) => handleChange(e, index)}
+            >
+              <option value="">Select type</option>
+              <option value="Bachelor">Bachelor</option>
+              <option value="Master">Master</option>
+              <option value="PhD">PhD</option>
+            </select>
+            <hr />
+          </div>
+        ))}
+
         <div className="buttons">
+          <button onClick={handleAddEducation} className='add'>Add Another Education</button>
           <button onClick={handlePrev} className='prev'>Prev</button>
           <button onClick={handleNext} className='next'>Next</button>
         </div>
