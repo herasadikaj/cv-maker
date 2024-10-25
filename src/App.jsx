@@ -7,7 +7,7 @@ import Skills from './components/Skills';
 import Languages from './components/Languages';
 import ExperiencePage from './components/Experience';
 import CvFinal from './components/CvFinal';
-
+import CvList from './components/CvList';
 function App() {
   const [cvData, setCvData] = useState({
     personalData: { name: '', surname: '', email: '', phone: '', linkedin: '', about: '' },
@@ -26,7 +26,8 @@ function App() {
         <Route path="/experience" element={<ExperiencePage cvData={cvData} setCvData={setCvData} />} />
         <Route path="/skills" element={<Skills cvData={cvData} setCvData={setCvData} />} />
         <Route path="/languages" element={<Languages cvData={cvData} setCvData={setCvData} />} />
-        <Route path="/cv" element={<CvFinal />} />
+        <Route path="/list" element={<CvList />} />
+        <Route path="/cv/:id" element={<CvFinal />} /> 
       </Routes>
     </Router>
   );

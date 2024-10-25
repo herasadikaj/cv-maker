@@ -1,8 +1,11 @@
-import { useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function CvFinal() {
-  const location = useLocation();
-  const { cvData } = location.state || {}; 
+  const { id } = useParams(); 
+  const navigate = useNavigate();
+  
+  const storedCvs = JSON.parse(localStorage.getItem('cvDataList')) || [];
+  const cvData = storedCvs[id]; 
 
   if (!cvData) {
     return <p>Loading or No Data Available...</p>;
@@ -47,6 +50,12 @@ function CvFinal() {
           <li key={index}>{language}</li>
         ))}
       </ul>
+
+      <div className='butona-fund'>
+        <button onClick={()=>navigate('/languages')}>Prev</button>
+        <button onClick={() => navigate('/list')}>Back to CV List</button>
+        <button onClick={() => navigate('/')}>Homepage</button>
+      </div>
     </div>
   );
 }

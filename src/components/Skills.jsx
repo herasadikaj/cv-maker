@@ -41,12 +41,13 @@ function SkillsPage({ cvData, setCvData }) {
 
   return (
     <div className="skills-page">
-      <h2>Skills</h2>
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      <div className="card">
-        <label>Skill:</label>
+    <h2 className='skil'>Skills</h2>
+  
+    {error && <p style={{ color: 'red' }}>{error}</p>}
+  
+    <div className="row">
+      <div className="card-skill">
+        <h3>Skill:</h3>
         <input
           type="text"
           value={skill}
@@ -55,18 +56,25 @@ function SkillsPage({ cvData, setCvData }) {
         />
         <button onClick={handleAddSkill}>Add Skill</button>
       </div>
-
-      <div className="card">
+  
+      <div className="card-list">
         <h3>Added Skills:</h3>
         <ul>
           {cvData.skills.map((skill, index) => (
             <li key={index}>{skill}</li>
           ))}
         </ul>
-      </div>
-      <button onClick={handlePrev}>Prev</button>
-      <button onClick={handleNext}>Next</button>
+        <div className="buttons">
+      <button onClick={handlePrev} className='prev'>Prev</button>
+      <button onClick={handleNext} className='next'>Next</button>
     </div>
+      </div>
+      
+    </div>
+  
+    
+  </div>
+  
   );
 }
 

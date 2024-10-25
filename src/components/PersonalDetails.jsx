@@ -29,62 +29,76 @@ function PersonalDataPage({ cvData, setCvData }) {
     setError('');
     navigate('/education'); 
   };
-
+  const handlePrev = () => {
+    navigate('/'); 
+  };
   return (
     <div className="personal-data-page">
       <h2>Personal Information</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <div className="card">
+      <div className="card-personal">
         <h3>Personal Details</h3>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={cvData?.personalData?.name || ''} 
-          onChange={handleChange}
-          placeholder="Enter your name"
-        />
-        <br/>
-        <label>Surname:</label>
-        <input
-          type="text"
-          name="surname"
-          value={cvData?.personalData?.surname || ''} 
-          onChange={handleChange}
-          placeholder="Enter your surname"
-        />
-        <br/>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={cvData?.personalData?.email || ''} 
-          onChange={handleChange}
-          placeholder="Enter your email"
-        />
-        <br/>
-        <label>Phone Number:</label>
-        <input
-          type="tel"
-          name="phone"
-          value={cvData?.personalData?.phone || ''} 
-          onChange={handleChange}
-          placeholder="Enter your phone number"
-        />
-        <br/>
-        <label>LinkedIn Profile:</label>
-        <input
-          type="url"
-          name="linkedin"
-          value={cvData?.personalData?.linkedin || ''} 
-          onChange={handleChange}
-          placeholder="Enter your LinkedIn link"
-        />
-      </div>
 
-      <div className="card about-card">
+      <div className="input-row">
+          <div className="input-container">
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={cvData?.personalData?.name || ''} 
+              onChange={handleChange}
+              placeholder="Enter your name"
+            />
+          </div>
+          <div className="input-container">
+            <label>Surname:</label>
+            <input
+              type="text"
+              name="surname"
+              value={cvData?.personalData?.surname || ''} 
+              onChange={handleChange}
+              placeholder="Enter your surname"
+            />
+          </div>
+        </div>
+
+       
+        <div className="input-row">
+          <div className="input-container">
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={cvData?.personalData?.email || ''} 
+              onChange={handleChange}
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="input-container">
+            <label>Phone Number:</label>
+            <input
+              type="tel"
+              name="phone"
+              value={cvData?.personalData?.phone || ''} 
+              onChange={handleChange}
+              placeholder="Enter your phone number"
+            />
+          </div>
+        </div>
+
+        <div className="input-container">
+          <label>LinkedIn Profile:</label>
+          <input
+            type="url"
+            name="linkedin"
+            value={cvData?.personalData?.linkedin || ''} 
+            onChange={handleChange}
+            placeholder="Enter your LinkedIn link"
+          />
+        </div>
+
         <h3>About Me</h3>
         <textarea
           name="about"
@@ -94,9 +108,10 @@ function PersonalDataPage({ cvData, setCvData }) {
           rows="4"
           cols="50"
         />
+         <div className="buttons"></div>
+        <button onClick={handlePrev}>Prev</button>
+        <button onClick={handleNext}>Next</button>
       </div>
-
-      <button onClick={handleNext}>Next</button>
     </div>
   );
 }

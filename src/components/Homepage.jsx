@@ -7,6 +7,9 @@ const navigate=useNavigate();
 const handleStart=()=>{
     navigate('/personal')
 }
+const handleList=()=>{
+    navigate('/list');
+}
 return (
 
     <div className="homepage">
@@ -14,7 +17,7 @@ return (
     <h4>BUILD YOUR CV WITH US</h4>
 
     <div className="butona-welcome">
-     <button className="check">Check CV</button>
+     <button className="check" onClick={handleList}>Check CV</button>
       <button className="create" onClick={handleStart}>Create CV</button>
      </div>
     </div>
