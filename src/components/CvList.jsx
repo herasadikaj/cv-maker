@@ -33,10 +33,13 @@ function CvList() {
   if (filteredCvs.length === 0) {
     return (
       <div>
-        <p>No CVs available. Please create a CV.</p>
+        <p>No CVs available. Please create a CV.<br/> Or go back to the list.</p>
+        <div className="buttons">
         <button onClick={() => navigate('/personal')} className="create-cv-button">
           Create a CV
         </button>
+        <button onClick={()=>navigate('/list')} className="create-cv-button">Back to list</button>
+        </div>
       </div>
     );
   }

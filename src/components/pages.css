@@ -357,7 +357,7 @@ background-color: #A23401;;
 .cv-card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
-  gap: 150px;
+  gap: 100px;
 }
 
 .cv-card {
