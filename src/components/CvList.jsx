@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import './pages.css';
+import { MdDeleteOutline } from "react-icons/md";
 
 function CvList() {
   const [cvList, setCvList] = useState([]);
@@ -41,7 +42,7 @@ function CvList() {
   }
 
   return (
-    <div className="cv-cards-container">
+    <div className="cv-list-container">
       <input
         type="text"
         placeholder="Search by CV Name"
@@ -61,12 +62,12 @@ function CvList() {
             <p><strong>Surname:</strong> {cvData.personalData?.surname}</p>
             <Link to={`/cv/${index}`} className="view-details">View Full CV</Link>
             
-            <button 
+            <MdDeleteOutline 
               className="delete-button"
               onClick={() => handleDelete(index)}
-            >
-              Delete CV
-            </button>
+              >
+                Delete CV
+              </MdDeleteOutline>
           </div>
         ))}
       </div>

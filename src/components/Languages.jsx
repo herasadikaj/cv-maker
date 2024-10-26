@@ -7,7 +7,7 @@ function Languages({ cvData, setCvData }) {
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [language, setLanguage] = useState('');
-  const [cvName, setCvName] = useState(''); 
+  const [cvName, setCvName] = useState('');
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
@@ -52,30 +52,33 @@ function Languages({ cvData, setCvData }) {
   return (
     <div className="languages-page">
       <h2>Languages</h2>
+      <h5>step 5</h5>
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <div className="card">
-        <label>Language</label>
-        <input
-          type="text"
-          value={language}
-          onChange={handleLanguageChange}
-          placeholder="Enter a language"
-        />
-        <button onClick={handleAddLanguage}>Add Language</button>
-      </div>
+        <div className="language-input-container">
+  
+          <input
+            type="text"
+            value={language}
+            onChange={handleLanguageChange}
+            placeholder="Enter a language"
+          />
+          <button onClick={handleAddLanguage} className="add-l">Add Language</button>
+        </div>
 
-      <div className="card">
-        <h3>Added Languages:</h3>
-        <ul>
-          {cvData.languages.map((language, index) => (
-            <li key={index}>{language}</li>
-          ))}
-        </ul>
+        <div className="added-languages">
+          <h3>Added Languages:</h3>
+          <ul>
+            {cvData.languages.map((language, index) => (
+              <li key={index}>{language}</li>
+            ))}
+          </ul>
+        </div>
       </div>
-
+<br/>
       <div className="card">
-        <label>CV Name</label>
+        <h3>CV Name</h3>
         <input
           type="text"
           value={cvName}
@@ -83,9 +86,9 @@ function Languages({ cvData, setCvData }) {
           placeholder="Enter a name for your CV"
         />
       </div>
-
+      <div className="buttons">
       <button onClick={handlePrev}>Prev</button>
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit}>Submit</button> </div>
     </div>
   );
 }

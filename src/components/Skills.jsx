@@ -42,18 +42,19 @@ function SkillsPage({ cvData, setCvData }) {
   return (
     <div className="skills-page">
     <h2 className='skil'>Skills</h2>
-  
+    <h5>step 4</h5>
     {error && <p style={{ color: 'red' }}>{error}</p>}
   
     <div className="row">
       <div className="card-skill">
-        <h3>Skill:</h3>
+   
         <input
           type="text"
           value={skill}
           onChange={handleSkillChange}
           placeholder="Enter a skill"
         />
+       
         <button onClick={handleAddSkill}>Add Skill</button>
       </div>
   

@@ -6,7 +6,7 @@ import './pages.css';
 function ExperiencePage({ cvData, setCvData }) {
   const navigate = useNavigate();
   const [error, setError] = useState('');
-
+  const [showCancel, setShowCancel] = useState(false);
 
   const handleChange = (e, index) => {
     const { name, value } = e.target;
@@ -23,7 +23,6 @@ function ExperiencePage({ cvData, setCvData }) {
     });
   };
 
-
   const handleAddExperience = () => {
     setCvData((prevData) => ({
       ...prevData,
@@ -32,7 +31,22 @@ function ExperiencePage({ cvData, setCvData }) {
         { startDate: '', endDate: '', companyName: '', position: '', description: '' },
       ],
     }));
+    setShowCancel(true);
   };
+  const handleCancelAddExperience=()=>{
+    setCvData((prevData) => {
+      const updatedExperience = [...prevData.experience];
+      updatedExperience.pop(); 
+      return {
+        ...prevData,
+        experience: updatedExperience,
+      };
+    });
+  
+  if (cvData.experience.length <= 1) {
+    setShowCancel(false); 
+  }
+};
 
   const handlePrev = () => {
     navigate('/education');
@@ -47,7 +61,7 @@ function ExperiencePage({ cvData, setCvData }) {
       setError('Please fill in all fields for each experience');
       return;
     }
-
+  
     setError('');
     navigate('/skills');
   };
@@ -55,12 +69,13 @@ function ExperiencePage({ cvData, setCvData }) {
   return (
     <div className="experience-page">
       <h2>Experience Information</h2>
+      <h5>step 3</h5>
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <div className="card-container">
         {cvData.experience.map((exp, index) => (
           <div className="card" key={index}>
-            <h3>Experience Details {index + 1}</h3>
+
             <div className="row">
               <div className="input-group">
                 <label>Start Date:</label>
@@ -91,6 +106,7 @@ function ExperiencePage({ cvData, setCvData }) {
                   name="companyName"
                   value={exp.companyName || ''}
                   onChange={(e) => handleChange(e, index)}
+                  placeholder="Enter company name"
                 />
               </div>
 
@@ -101,6 +117,7 @@ function ExperiencePage({ cvData, setCvData }) {
                   name="position"
                   value={exp.position || ''}
                   onChange={(e) => handleChange(e, index)}
+                  placeholder="Enter position"
                 />
               </div>
             </div>
@@ -118,9 +135,18 @@ function ExperiencePage({ cvData, setCvData }) {
       </div>
 
       <div className="buttons">
+      <button onClick={handlePrev} className="prev">Prev</button>
+      <button onClick={handleNext} className="next">Next</button>
         <button onClick={handleAddExperience} className="add-experience">Add Another Experience</button>
-        <button onClick={handlePrev} className="prev">Prev</button>
-        <button onClick={handleNext} className="next">Next</button>
+        {showCancel && (
+    <button 
+      onClick={handleCancelAddExperience} 
+      className='cancel' 
+      disabled={cvData.experience.length <= 1} 
+    >
+      Cancel
+    </button>
+  )}
       </div>
     </div>
   );
