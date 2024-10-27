@@ -1,13 +1,22 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import './pages.css';
+import { MdDeleteOutline } from "react-icons/md";
 
 function Languages({ cvData, setCvData }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [error, setError] = useState('');
   const [language, setLanguage] = useState('');
-  const [cvName, setCvName] = useState('');
+  const [cvName, setCvName] = useState(cvData.cvName || '');
+
+  useEffect(() => {
+    if (location.state?.cvData) {
+      setCvData(location.state.cvData); 
+      setCvName(location.state.cvData.cvName || ''); 
+    }
+  }, [location.state, setCvData]);
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
@@ -32,6 +41,13 @@ function Languages({ cvData, setCvData }) {
     setError('');
   };
 
+  const handleDeleteLanguage = (languageToDelete) => {
+    setCvData((prevData) => ({
+      ...prevData,
+      languages: prevData.languages.filter((lang) => lang !== languageToDelete),
+    }));
+  };
+
   const handlePrev = () => {
     navigate('/skills');
   };
@@ -43,21 +59,20 @@ function Languages({ cvData, setCvData }) {
     }
 
     const storedCvs = JSON.parse(localStorage.getItem('cvDataList')) || [];
-    const updatedCvData = { ...cvData, cvName }; 
-    localStorage.setItem('cvDataList', JSON.stringify([...storedCvs, updatedCvData])); 
+    const updatedCvData = { ...cvData, cvName };
+    localStorage.setItem('cvDataList', JSON.stringify([...storedCvs, updatedCvData]));
 
-    navigate('/list', { state: { cvData: updatedCvData } }); 
+    navigate('/list', { state: { cvData: updatedCvData } });
   };
 
   return (
     <div className="languages-page">
-      <h2>Languages</h2>
+      <h2 className='personal-title'>Languages</h2>
       <h5>step 5</h5>
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <div className="card">
         <div className="language-input-container">
-  
           <input
             type="text"
             value={language}
@@ -70,14 +85,17 @@ function Languages({ cvData, setCvData }) {
         <div className="added-languages">
           <h3>Added Languages:</h3>
           <ul>
-            {cvData.languages.map((language, index) => (
-              <li key={index}>{language}</li>
+            {cvData.languages.map((lang, index) => (
+              <li key={index}>
+                {lang}
+                <MdDeleteOutline onClick={() => handleDeleteLanguage(lang)} className="delete-button" />
+              </li>
             ))}
           </ul>
         </div>
       </div>
-<br/>
-      <div className="card">
+
+      <div className="card cv-name-section">
         <h3>CV Name</h3>
         <input
           type="text"
@@ -86,9 +104,11 @@ function Languages({ cvData, setCvData }) {
           placeholder="Enter a name for your CV"
         />
       </div>
+
       <div className="buttons">
-      <button onClick={handlePrev}>Prev</button>
-      <button onClick={handleSubmit}>Submit</button> </div>
+        <button onClick={handlePrev}>Prev</button>
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
     </div>
   );
 }

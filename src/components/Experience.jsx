@@ -68,7 +68,7 @@ function ExperiencePage({ cvData, setCvData }) {
 
   return (
     <div className="experience-page">
-      <h2>Experience Information</h2>
+      <h2 className='personal-title'>Experience Information</h2>
       <h5>step 3</h5>
       {error && <p style={{ color: 'red' }}>{error}</p>}
 

@@ -68,8 +68,8 @@ function CvFinal() {
         </ul>
       </section>
 
-      <div className='button-container'>
-        <button onClick={() => navigate('/languages')}>Prev</button>
+    <div className='button-container'>
+        <button onClick={() => navigate('/languages', { state: { cvData } })}>Edit CV</button>
         <button onClick={() => navigate('/list')}>Back to CV List</button>
         <button onClick={() => navigate('/')}>Homepage</button>
       </div>
